@@ -82,9 +82,11 @@ double getInterest(string message)
 
 void displayInfo(bankAccount accounts[])
 {
+	cout << "Account Details" << endl;
+	cout << "---------------" << endl;
 	for (int i = 0; i < NumAccount; i++)
 	{
-		cout << "Account No: " + to_string(i + 1) + " Details Below" << endl;
+		cout << "Account No: " + to_string(i + 1) << endl;
 		cout << "Account Number: " << accounts[i].accountNumber << endl;
 		cout << "Account Balance: " << accounts[i].accountBalance << endl;
 		cout << "Annual Interest rate: " << accounts[i].interestRate << endl;
@@ -119,19 +121,19 @@ int main()
 	//get user input for each number of accounts
 	for (int i = 0; i < NumAccount; i++)
 	{
-		userAccount[i].accountNumber = getValidAccountNo("Please enter the Account Number " + to_string(i + 1) + " : ");
+		userAccount[i].accountNumber = getValidAccountNo("\nEnter the Account Number " + to_string(i + 1) + " : ");
 
 		//check if any of the account numbers are same
 		if (i == 1)
 		{
 			while (userAccount[i - 1].accountNumber == userAccount[i].accountNumber)
 			{
-				userAccount[i].accountNumber = getValidAccountNo("Please enter an Account Number which is not equal to " + to_string(userAccount[i - 1].accountNumber) + " : ");
+				userAccount[i].accountNumber = getValidAccountNo("Please enter an Account Number which is not " + to_string(userAccount[i - 1].accountNumber) + " : ");
 			}
 		}
 
 		//get valid account balance
-		userAccount[i].accountBalance = getBalance("Enter the account balance for " + to_string(userAccount[i].accountNumber) + " in $ : ");
+		userAccount[i].accountBalance = getBalance("Enter the remaining balance for Account No- " + to_string(userAccount[i].accountNumber) + " in $ : ");
 		userAccount[i].interestRate = getInterest("Enter the Interest rate for " + to_string(userAccount[i].accountNumber) + " in $ : ");
 	}
 
@@ -144,7 +146,7 @@ int main()
 	double transferAmount;
 
 	//prompt user to get transfer amount
-	cout << "Please enter the amount to be transferred from " + to_string(userAccount[0].accountNumber) + " to " + to_string(userAccount[1].accountNumber) + " : ";
+	cout << "Enter the amount to be transferred from Acc.No " + to_string(userAccount[0].accountNumber) + " to " + to_string(userAccount[1].accountNumber) + " : ";
 	cin >> transferAmount;
 
 	//validate the transaction
@@ -152,11 +154,11 @@ int main()
 	{
 		if ((userAccount[0].accountBalance - transferAmount) < 10)
 		{
-			cout << "\nWarning ! : first account balance below $10.00" << endl;
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[0].accountNumber) + " balance is below $10.00 " << endl;
 		}
 		if ((userAccount[1].accountBalance + transferAmount) > 100000)
 		{
-			cout << "\nWarning ! : Second account balance is higher than amount fedarally insured" << endl;
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[1].accountNumber) + " balance is higher than amount fedarally insured" << endl;
 		}
 
 		// complete the transaction
@@ -166,11 +168,11 @@ int main()
 	}
 	else
 	{
-		cout << "\nTransaction Denied - Insufficient amount " << endl;
+		cout << "\nTransaction Unsuccessful :- Insufficient credit " << endl;
 	}
 
 	//finally show the account status
-	cout << "\nFinal account statuses goes as below\n" << endl;
+	cout << "\nUpdated Account details\n" << endl;
 	displayInfo(userAccount);
 
 	//automatic deposit and withdrawal amount per month
@@ -180,17 +182,17 @@ int main()
 
 	for (int i = 0; i < NumAccount; i++)
 	{
-		cout << "\nPlease Enter the monthly Deposit Amount for account No. " + to_string(userAccount[i].accountNumber) + ": ";
+		cout << "\nEnter the Monthly Deposit Amount for Account No." + to_string(userAccount[i].accountNumber) + ": ";
 		cin >> monthlyDeposit;
-		cout << "\nPlease Enter the monthly Withdrawal Amount for account No. " + to_string(userAccount[i].accountNumber) + ": ";
+		cout << "\nEnter the Monthly Withdrawal Amount for Account No." + to_string(userAccount[i].accountNumber) + ": ";
 		cin >> monthlyWithdrawal;
 
 		double endingBalance = userAccount[i].accountBalance + (((userAccount[i].accountBalance * userAccount[i].interestRate) / 100) / 12) + monthlyDeposit - monthlyWithdrawal;
 
 
 
-		cout << "\n" << YEAR << "/" << MONTH << " Starting balance is " << userAccount[i].accountBalance << \
-			" and " << YEAR << "/" << MONTH << " ending balance is " << endingBalance << endl;
+		cout << "\n" << YEAR << "/" << MONTH << " Starting balance is - $" << userAccount[i].accountBalance << \
+			" and " << YEAR << "/" << MONTH << " Ending balance is - $" << endingBalance << endl;
 
 		userAccount[i].accountBalance = endingBalance;
 
