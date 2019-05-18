@@ -98,7 +98,7 @@ void writeAccountDetails(bankAccount accounts[], int arraySize)
 {
 	//open the file to write
 	ofstream writeFile;
-	writeFile.open("BankAccounts.txt");
+	writeFile.open("InterBankingPty-CustomerAccounts.txt");
 
 	writeFile << "Below account Details are in the format of - Account No, Interest Rate, Account Balance. \n\n";
 
@@ -188,13 +188,16 @@ int main()
 		cin >> monthlyWithdrawal;
 
 		double endingBalance = userAccount[i].accountBalance + (((userAccount[i].accountBalance * userAccount[i].interestRate) / 100) / 12) + monthlyDeposit - monthlyWithdrawal;
+		if (endingBalance < 0.0) {
+			cout << "Cannot perform automatic transactions! Withdrawal Amount is too large & Account balance cannot be less than $0" << endl;
+		}
+		else
+		{
+			cout << "\n" << YEAR << "/" << MONTH << " Starting balance is - $" << userAccount[i].accountBalance << \
+				" and " << YEAR << "/" << MONTH << " Ending balance is - $" << endingBalance << endl;
 
-
-
-		cout << "\n" << YEAR << "/" << MONTH << " Starting balance is - $" << userAccount[i].accountBalance << \
-			" and " << YEAR << "/" << MONTH << " Ending balance is - $" << endingBalance << endl;
-
-		userAccount[i].accountBalance = endingBalance;
+			userAccount[i].accountBalance = endingBalance;
+		}
 
 	}
 

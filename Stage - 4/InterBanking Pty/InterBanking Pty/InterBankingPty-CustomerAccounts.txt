@@ -1,4 +1,4 @@
 Below account Details are in the format of - Account No, Interest Rate, Account Balance. 
 
-5000, 10, 1508.33
-5005, 11, 25170
+8995, 0.12, 450
+6666, 0.05, 52306
