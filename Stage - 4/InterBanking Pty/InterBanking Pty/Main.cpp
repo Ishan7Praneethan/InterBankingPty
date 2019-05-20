@@ -13,30 +13,119 @@ struct bankAccount
 	double interestRate;
 };
 
+//Function signatures
+double getBalance(string message);
+double getInterest(string message);
+void writeAccountDetails(bankAccount accounts[], int arraySize);
+void displayAccount(bankAccount account);
+bankAccount enterAccountData(int);
+void computeInterest(bankAccount account);
+
+
+
 //creating a constant to hold number of user accounts
-int const NumAccount = 2;
-//creating constant to hold Month and Year Details
-const int YEAR = 2019;
-const int MONTH = 5;
+int const NumAccount = 10;
 
-int getValidAccountNo(string message)
+
+int main()
 {
-	const int max = 9999;
-	const int min = 1000;
-	int accNum, counter = 0;
-	do
-	{
-		counter++;
-		cout << message;
-		cin >> accNum;
-		if (counter == 1)
-		{
-			message = "Invalid input! " + message;
-		}
-	} while ((accNum < min) || (accNum > max));
 
-	return accNum;
+	//create new bankAccount objects
+	bankAccount userAccount[NumAccount];
+
+	//creating a variable to hold account numbers
+	int accNum;
+
+	//create an variable to track number of objects created
+	int numOfObj = 0;
+
+	//get user input for each number of accounts
+	for (int i = 0; i < NumAccount; i++)
+	{
+
+		//get the account number
+		do
+		{
+			cout << "Please enter the Account Number " + to_string(i + 1) + " : ";
+			cin >> accNum;
+
+			cin.ignore();
+
+		} while ((accNum != 0) && (accNum > 9999 || accNum < 1000));
+
+		//only continue if the user wish to
+		if (accNum == 0)
+		{
+			break;
+		}
+
+		//get the details to the array
+		userAccount[i] = enterAccountData(accNum);
+		numOfObj++;
+
+	}
+
+	//display the details of each account
+	for (int i = 0; i < numOfObj; i++)
+	{
+		displayAccount(userAccount[i]);
+		computeInterest(userAccount[i]);
+	}
+
+
+	//Transferring Money
+	//declaring a variable to hold money to be transferred from account 1 to account 2;
+	double transferAmount;
+	int accNum1, accNum2;
+
+
+
+	//prompt user to get transfer amount
+	cout << "\n\nEnter the Account Number to Transfer Money From : ";
+	cin >> accNum1;
+	cout << "Enter the Account Number to Transfer Money To : ";
+	cin >> accNum2;
+	cout << "Enter the Amount to be transfered from " + to_string(userAccount[accNum1].accountNumber) + " : ";
+	cin >> transferAmount;
+
+
+	//validate the transaction
+	if (userAccount[accNum1 + 1].accountBalance > transferAmount)
+	{
+		if ((userAccount[accNum1].accountBalance - transferAmount) < 10)
+		{
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum1 + 1].accountNumber) + " balance is below $10.00 " << endl;
+		}
+		if ((userAccount[accNum2 + 1].accountBalance + transferAmount) > 100000)
+		{
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum2 + 1].accountNumber) + " balance is higher than amount fedarally insured" << endl;
+		}
+
+		// complete the transaction
+		userAccount[accNum1 + 1].accountBalance -= transferAmount;
+		userAccount[accNum2 + 1].accountBalance += transferAmount;
+
+	}
+	else
+	{
+		cout << "\nTransaction Unsuccessful :- Insufficient credit " << endl;
+	}
+
+	//finally show the account status after Transactions
+	cout << "\nUpdated Account details\n" << endl;
+	for (int i = 0; i < numOfObj; i++)
+	{
+		displayAccount(userAccount[i]);
+	}
+
+	//write account details to a file
+	writeAccountDetails(userAccount, numOfObj);
+
+	cout << "\nPress any key to Exit...";
+	_getwch();
+
 }
+
 
 double getBalance(string message)
 {
@@ -61,7 +150,7 @@ double getBalance(string message)
 
 double getInterest(string message)
 {
-	double const min = 0.0;
+	double const min = 0.01;
 	double const max = 15.0;
 	double interest;
 	int counter = 0;
@@ -80,18 +169,16 @@ double getInterest(string message)
 	return interest;
 }
 
-void displayInfo(bankAccount accounts[])
+
+void displayAccount(bankAccount account)
 {
-	cout << "Account Details" << endl;
-	cout << "---------------" << endl;
-	for (int i = 0; i < NumAccount; i++)
-	{
-		cout << "Account No: " + to_string(i + 1) << endl;
-		cout << "Account Number: " << accounts[i].accountNumber << endl;
-		cout << "Account Balance: " << accounts[i].accountBalance << endl;
-		cout << "Annual Interest rate: " << accounts[i].interestRate << endl;
-		cout << endl;
-	}
+	cout << endl;
+	cout << "Account Number: " << account.accountNumber << endl;
+	cout << "Customer Name: " << account.userName << endl;
+	cout << "Account Balance: " << account.accountBalance << endl;
+	cout << "Interest Rate: " << account.interestRate << endl;
+	cout << endl;
+
 }
 
 void writeAccountDetails(bankAccount accounts[], int arraySize)
@@ -100,11 +187,11 @@ void writeAccountDetails(bankAccount accounts[], int arraySize)
 	ofstream writeFile;
 	writeFile.open("InterBankingPty-CustomerAccounts.txt");
 
-	writeFile << "Below account Details are in the format of - Account No, Interest Rate, Account Balance. \n\n";
+	writeFile << "Below account Details are in the format of - Account No, User Name, Interest Rate, Account Balance. \n\n";
 
 	for (int i = 0; i < arraySize; i++)
 	{
-		writeFile << accounts[i].accountNumber << ", " << accounts[i].interestRate << ", " \
+		writeFile << accounts[i].accountNumber << ", " << accounts[i].userName << ", " << accounts[i].interestRate << ", " \
 			<< accounts[i].accountBalance << endl;
 	}
 
@@ -112,102 +199,51 @@ void writeAccountDetails(bankAccount accounts[], int arraySize)
 	writeFile.close();
 }
 
-int main()
+bankAccount enterAccountData(int accountNumber)
 {
+	//declare a local bank account objcts 
+	bankAccount account;
 
-	//create new bankAccount objects
-	bankAccount userAccount[NumAccount];
+	//get the details from the user 
+	cout << "Please enter the customer name: ";
+	getline(cin, account.userName);
 
-	//get user input for each number of accounts
-	for (int i = 0; i < NumAccount; i++)
-	{
-		userAccount[i].accountNumber = getValidAccountNo("\nEnter the Account Number " + to_string(i + 1) + " : ");
+	cout << "Please enter the password for the user: ";
+	getline(cin, account.password);
 
-		//check if any of the account numbers are same
-		if (i == 1)
-		{
-			while (userAccount[i - 1].accountNumber == userAccount[i].accountNumber)
-			{
-				userAccount[i].accountNumber = getValidAccountNo("Please enter an Account Number which is not " + to_string(userAccount[i - 1].accountNumber) + " : ");
-			}
-		}
+	account.accountNumber = accountNumber;
+	account.accountBalance = getBalance("Please Enter the Balance in $: ");
+	account.interestRate = getInterest("Please enter the Interest Rate: ");
 
-		//get valid account balance
-		userAccount[i].accountBalance = getBalance("Enter the remaining balance for Account No- " + to_string(userAccount[i].accountNumber) + " in $ : ");
-		userAccount[i].interestRate = getInterest("Enter the Interest rate for " + to_string(userAccount[i].accountNumber) + " in $ : ");
-	}
-
-	//Display user informations
-	cout << endl;
-	displayInfo(userAccount);
-
-	//Transferring Money
-	//declaring a variable to hold money to be transferred from account 1 to account 2;
-	double transferAmount;
-
-	//prompt user to get transfer amount
-	cout << "Enter the amount to be transferred from Acc.No " + to_string(userAccount[0].accountNumber) + " to " + to_string(userAccount[1].accountNumber) + " : ";
-	cin >> transferAmount;
-
-	//validate the transaction
-	if (userAccount[0].accountBalance > transferAmount)
-	{
-		if ((userAccount[0].accountBalance - transferAmount) < 10)
-		{
-			cout << "\nWarning ! : Account No-" + to_string(userAccount[0].accountNumber) + " balance is below $10.00 " << endl;
-		}
-		if ((userAccount[1].accountBalance + transferAmount) > 100000)
-		{
-			cout << "\nWarning ! : Account No-" + to_string(userAccount[1].accountNumber) + " balance is higher than amount fedarally insured" << endl;
-		}
-
-		// complete the transaction
-		userAccount[0].accountBalance -= transferAmount;
-		userAccount[1].accountBalance += transferAmount;
-
-	}
-	else
-	{
-		cout << "\nTransaction Unsuccessful :- Insufficient credit " << endl;
-	}
-
-	//finally show the account status
-	cout << "\nUpdated Account details\n" << endl;
-	displayInfo(userAccount);
-
-	//automatic deposit and withdrawal amount per month
-	//declare variable to hold the amounts
-	double monthlyDeposit;
-	double monthlyWithdrawal;
-
-	for (int i = 0; i < NumAccount; i++)
-	{
-		cout << "\nEnter the Monthly Deposit Amount for Account No." + to_string(userAccount[i].accountNumber) + ": ";
-		cin >> monthlyDeposit;
-		cout << "\nEnter the Monthly Withdrawal Amount for Account No." + to_string(userAccount[i].accountNumber) + ": ";
-		cin >> monthlyWithdrawal;
-
-		double endingBalance = userAccount[i].accountBalance + (((userAccount[i].accountBalance * userAccount[i].interestRate) / 100) / 12) + monthlyDeposit - monthlyWithdrawal;
-		if (endingBalance < 0.0) {
-			cout << "Cannot perform automatic transactions! Withdrawal Amount is too large & Account balance cannot be less than $0" << endl;
-		}
-		else
-		{
-			cout << "\n" << YEAR << "/" << MONTH << " Starting balance is - $" << userAccount[i].accountBalance << \
-				" and " << YEAR << "/" << MONTH << " Ending balance is - $" << endingBalance << endl;
-
-			userAccount[i].accountBalance = endingBalance;
-		}
-
-	}
-
-	//write account details to a file
-	writeAccountDetails(userAccount, NumAccount);
-
-	cout << "\nPress any key to Exit...";
-	_getwch();
-
+	return account;
 }
+
+void computeInterest(bankAccount account)
+{
+	//get the number of years account will earn interest from the user
+	//declare a variable to hold the number of years and ending balance for the year
+	int years;
+	double endBalance = account.accountBalance;
+	cout << "Please enter the number of years the account will earn interest: ";
+	cin >> years;
+
+	//validate user input of year 
+	while (years < 1)
+	{
+		cout << "Number of years can't be 0 or negative - Please provide a valid input: ";
+		cin >> years;
+	}
+
+	for (int i = 0; i < years; i++)
+	{
+		//calculate the end balance
+		endBalance += (endBalance * account.interestRate) / 100;
+		cout << "year " << to_string(i + 1) << " end balance is " << endBalance << endl;
+
+	}
+}
+
+
 
 
 
