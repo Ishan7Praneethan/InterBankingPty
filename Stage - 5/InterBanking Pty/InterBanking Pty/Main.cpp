@@ -22,9 +22,11 @@ public:
 const double BankAccount::interestRate = 3;
 
 void BankAccount::displayAccount()
+
 {
+
 	cout << "Account Number : " << accountNumber << endl;
-	cout << "Account Balance: " << accountBalance << endl;
+	cout << "Account Balance: $" << accountBalance << endl;
 	cout << endl;
 }
 
@@ -38,12 +40,12 @@ void BankAccount::computeInterest(int numYears)
 	//declare a variable to hold the endbalance of each year and initialize it to the account balance
 	double endbalance = accountBalance;
 
-	cout << "Account No: " << accountNumber << endl;
+	cout << "\nAccount No: " << accountNumber << "\n"<< endl;
 
 	for (int year = 1; year <= numYears; year++)
 	{
 		endbalance = endbalance + ((endbalance * interestRate) / 100);
-		cout << "Year " << year << "ending balance is " << endbalance << endl;
+		cout << "Year - " << year << " the Ending balance is $" << endbalance << endl;
 	}
 
 	cout << endl;
@@ -52,9 +54,9 @@ void BankAccount::computeInterest(int numYears)
 void BankAccount::enterAccountData()
 {
 	//get the account number from the user
-	accountNumber = getValidValue("Please enter the account number: ", 1000, 9999);
+	accountNumber = getValidValue("\nEnter the account number: ", 1000, 9999);
 	//get the account balance from the user
-	accountBalance = getValidValue("Please enter the account balance: ", 0.00, 100000.0);
+	accountBalance = getValidValue("Enter the Account balance: $", 0.00, 100000.0);
 }
 
 int BankAccount::getValidValue(string message, int lower, int upper)
@@ -70,7 +72,7 @@ int BankAccount::getValidValue(string message, int lower, int upper)
 		counter++;
 		if (counter == 1)
 		{
-			message = "Invalid input - " + message;
+			message = "*Invalid input*\n" + message;
 		}
 
 	} while (number > upper || number < lower);
@@ -91,7 +93,7 @@ double BankAccount::getValidValue(string message, double lower, double upper)
 		counter++;
 		if (counter == 1)
 		{
-			message = "Invalid input - " + message;
+			message = "*Invalid input*\n" + message;
 		}
 
 	} while (number > upper || number < lower);
@@ -116,7 +118,7 @@ int main()
 		//ask if user wish to add anumore accounts
 		if (i < 10)
 		{
-			cout << "Would you like to add another account ? (y - Yes | any other character - No) : ";
+			cout << "\nWould you like to add another account? (Yes = 'y' | No = 'Any other character'): ";
 			cin >> userChoice;
 		}
 
@@ -125,8 +127,9 @@ int main()
 	// keep a blank line
 	cout << endl;
 
-	//disaplay the information abount each bank account
-
+	//display the information about each bank account
+	cout << "Account Details" << endl;
+	cout << "---------------" << endl;
 	for (int j = 0; j < i; j++)
 	{
 		BankAccount account;
@@ -142,10 +145,12 @@ int main()
 	{
 		do
 		{
-			cout << "Please enter the number of years the account NO: " << accounts[g].getAccountNumber() << " will be active: ";
+			cout << "Enter the total Number of years Account No:" << accounts[g].getAccountNumber() << " will be active for: ";
 			cin >> years;
-		} while ((years > 40) || (years < 0));
-		//displayb user the each year ending balance 
+		}while ((years > 40) || (years < 0));
+		
+		
+		//display user the each year ending balance 
 
 		accounts[g].computeInterest(years);
 	}
