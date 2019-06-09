@@ -1,6 +1,0 @@
-Below account Details are in the format of - Account No, User Name, Interest Rate, Account Balance. 
-
-5687, Krisha, 0.21, 897
-6542, Ishan, 12, 568
-6542, kresg, 14, 6325
-5687, pokiu, 13, 5658
