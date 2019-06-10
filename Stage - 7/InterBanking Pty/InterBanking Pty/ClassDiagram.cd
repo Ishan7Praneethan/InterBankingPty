@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BankAccount">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIACAAIgAAAgAAAAAAAACAAAAAOAIAABAgECAgAAgAA=</HashCode>
+      <FileName>BankAccount.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankBranch">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECIAAgCAAgAAAAAAAAAAAAAIIAAAAAAAAAggAAIAA=</HashCode>
+      <FileName>BankBranch.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckingAccount">
+    <Position X="6.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAgAIAAAAAAAQAAEAABEAAAAAAAAAAAA=</HashCode>
+      <FileName>CheckingAccount.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckingAccountWithInterest">
+    <Position X="0.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAoAAAgAAAAAAAACAAAAAMAIBAAAgADAgAAAAA=</HashCode>
+      <FileName>CheckingAccountWithInterest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SavingsAccount">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SavingsAccount.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
