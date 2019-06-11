@@ -85,25 +85,25 @@ int main()
 	cin >> accNum1;
 	cout << "Enter the Account Number to Transfer Money To : ";
 	cin >> accNum2;
-	cout << "Enter the Amount to be transfered from " + to_string(userAccount[accNum1-1].accountNumber) + " : ";
+	cout << "Enter the Amount to be transfered from " + to_string(userAccount[accNum1 - 1].accountNumber) + " : ";
 	cin >> transferAmount;
 
 
 	//validate the transaction
-	if (userAccount[accNum1-1].accountBalance > transferAmount)
+	if (userAccount[accNum1 - 1].accountBalance > transferAmount)
 	{
-		if ((userAccount[accNum1-1].accountBalance - transferAmount) < 10)
+		if ((userAccount[accNum1 - 1].accountBalance - transferAmount) < 10)
 		{
-			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum1-1].accountNumber) + " balance is below $10.00 " << endl;
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum1 - 1].accountNumber) + " balance is below $10.00 " << endl;
 		}
-		if ((userAccount[accNum2-1].accountBalance + transferAmount) > 100000)
+		if ((userAccount[accNum2 - 1].accountBalance + transferAmount) > 100000)
 		{
-			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum2-1].accountNumber) + " balance is higher than amount fedarally insured" << endl;
+			cout << "\nWarning ! : Account No-" + to_string(userAccount[accNum2 - 1].accountNumber) + " balance is higher than amount fedarally insured" << endl;
 		}
 
 		// complete the transaction
-		userAccount[accNum1-1].accountBalance -= transferAmount;
-		userAccount[accNum2-1].accountBalance += transferAmount;
+		userAccount[accNum1 - 1].accountBalance -= transferAmount;
+		userAccount[accNum2 - 1].accountBalance += transferAmount;
 
 	}
 	else
