@@ -80,10 +80,10 @@ int main()
 		getFileData(savingsAccounts, checkingAccounts, checkAndInterest, numSavingsAccounts, numCheckAccounts, numCheckAndInterestAccounts, username, password);
 		do
 		{
-			cout << "Please enter the username: ";
+			cout << "\nEnter the Account Holder's Name: ";
 			cin >> checkUserName;
 
-			cout << "Please enter the password: ";
+			cout << "Enter the password: ";
 			cin >> checkPassword;
 
 		} while ((checkUserName.compare(username) != 0 || checkPassword.compare(password) != 0));
@@ -91,7 +91,7 @@ int main()
 	else
 	{
 		//if not create an userAccount
-		cout << "Please enter the username: ";
+		cout << "\nEnter the username: ";
 		getline(cin, username);
 
 		//std::cin.ignore();
@@ -121,12 +121,12 @@ int main()
 		cout << "4) Exit the program" << endl;
 
 
-		userChoice = getInt("Please select your choice: ");
+		userChoice = getInt("\nPlease enter your choice: ");
 
 		//validate user choice 
 		while (userChoice > 4 || userChoice <= 0)
 		{
-			userChoice = getInt("Please select your choice: ");
+			userChoice = getInt("\nPlease enter your choice: ");
 		}
 
 		switch (userChoice)
@@ -201,7 +201,7 @@ void viewDetails(CheckingAccountWithInterest accounts[], int withInterestNum)
 {
 	if (withInterestNum == 0)
 	{
-		cout << "No Checking Accounts with Interest exist." << endl;
+		cout << "\nNo Checking Accounts with Interest exist's." << endl;
 	}
 	else
 	{
@@ -220,7 +220,7 @@ void viewDetails(CheckingAccount accounts[], int checkingNum)
 {
 	if (checkingNum == 0)
 	{
-		cout << "No Checking Accounts exist." << endl;
+		cout << "\nNo Checking Accounts exist." << endl;
 	}
 	else
 	{
@@ -239,7 +239,7 @@ void viewDetails(SavingsAccount accounts[], int savingsNum)
 {
 	if (savingsNum == 0)
 	{
-		cout << "No Savings Accounts exist." << endl;
+		cout << "\nNo Savings Accounts exist." << endl;
 	}
 	else
 	{
@@ -268,9 +268,9 @@ void viewAccounts(SavingsAccount savingAccounts[], CheckingAccount checkingAccou
 		cout << "1) Savings Accounts" << endl;
 		cout << "2) Checking Accounts" << endl;
 		cout << "3) Checking Accounts With Interest" << endl;
-		cout << "4) Exit to main menu" << endl;
+		cout << "4) Exit to the main menu" << endl;
 
-		userChoice = getInt("Please select your choice: ");
+		userChoice = getInt("\nPlease enter your choice: ");
 
 		//validate user choice 
 		while (userChoice > 4 || userChoice <= 0)
@@ -309,7 +309,7 @@ void createAccount(CheckingAccount checkingAccounts[], SavingsAccount savingsAcc
 	int userChoice = 0;
 
 	//display the menu to the user
-	cout << "Please enter the type of the account " << endl;
+	cout << "\nEnter the type of the account : " << endl;
 
 	if (*numSaving < MAXIMUMACCOUNTS)
 	{
@@ -328,7 +328,7 @@ void createAccount(CheckingAccount checkingAccounts[], SavingsAccount savingsAcc
 
 	do
 	{
-		userChoice = getInt("Please enter your choice: ");
+		userChoice = getInt("\nPlease enter your choice: ");
 
 	} while ((userChoice > 4 || userChoice < 1));
 
@@ -344,7 +344,7 @@ void createAccount(CheckingAccount checkingAccounts[], SavingsAccount savingsAcc
 		}
 		else
 		{
-			cout << "Maximum Account limit reached for Savings accounts" << endl;
+			cout << "\nMaximum Account limit has been reached for Savings Accounts" << endl;
 		}
 		break;
 
@@ -356,7 +356,7 @@ void createAccount(CheckingAccount checkingAccounts[], SavingsAccount savingsAcc
 		}
 		else
 		{
-			cout << "Maximum Account limit reached for checking accounts" << endl;
+			cout << "\nMaximum Account limit has been reached for Checking Accounts" << endl;
 		}
 		break;
 
@@ -368,7 +368,7 @@ void createAccount(CheckingAccount checkingAccounts[], SavingsAccount savingsAcc
 		}
 		else
 		{
-			cout << "Maximum Account limit reached for checking with interest accounts" << endl;
+			cout << "\nMaximum Account limit has been reached for checking with interest accounts" << endl;
 		}
 		break;
 
@@ -396,17 +396,17 @@ void addAccount(CheckingAccountWithInterest accounts[], int index)
 	accountNumber = 1000 + (rand() % 1000);
 
 	//promt the user for values
-	cout << "\nEnter the account balance: ";
+	cout << "\nEnter the account balance: $";
 	balance = getDouble("");
 
-	cout << "Enter the BSB number: ";
+	cout << "Enter the BSB number : ";
 	BSB = getInt("");
 
-	cout << "Enter the address: ";
+	cout << "Enter the address : ";
 	cin >> address;
 	std::cin.ignore();
 
-	cout << "Enter the Postcode";
+	cout << "Enter the Postcode : ";
 	postcode = getInt("");
 
 
@@ -431,17 +431,17 @@ void addAccount(CheckingAccount accounts[], int index)
 	accountNumber = 1000 + (rand() % 1000);
 
 	//promt the user for values
-	cout << "\nEnter the account balance: ";
+	cout << "\nEnter the account balance: $";
 	balance = getDouble("");
 
-	cout << "Enter the BSB number: ";
+	cout << "Enter the BSB number : ";
 	BSB = getInt("");
 
-	cout << "Enter the address: ";
+	cout << "Enter the address : ";
 	cin >> address;
 	std::cin.ignore();
 
-	cout << "Enter the Postcode";
+	cout << "Enter the Postcode : ";
 	postcode = getInt("");
 
 
@@ -466,17 +466,17 @@ void addAccount(SavingsAccount accounts[], int index)
 	accountNumber = 1000 + (rand() % 1000);
 
 	//promt the user for values
-	cout << "\nEnter the account balance: ";
+	cout << "\nEnter the account balance: $";
 	balance = getDouble("");
 
-	cout << "Enter the BSB number: ";
+	cout << "Enter the BSB number : ";
 	BSB = getInt("");
 
-	cout << "Enter the address: ";
+	cout << "Enter the address : ";
 	cin >> address;
 	std::cin.ignore();
 
-	cout << "Enter the Postcode";
+	cout << "Enter the Postcode : ";
 	postcode = getInt("");
 
 	//create an object of the account type
@@ -537,10 +537,10 @@ void displayReport(SavingsAccount savingAccounts[], CheckingAccount checkingAcco
 
 	//write savings accountst to the file
 
-	cout << "........................................Report Begains...............................................\n\n";
+	cout << "........................................Report Begins...............................................\n\n";
 
 	cout << "Savings Accounts: ";
-	cout << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address and Postcode \n";
+	cout << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address and Postcode \n";
 
 
 	for (int i = 0; i < savingsize; i++)
@@ -554,7 +554,7 @@ void displayReport(SavingsAccount savingAccounts[], CheckingAccount checkingAcco
 	//write checking accounts to the file
 
 	cout << "Checking Accounts: ";
-	cout << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee and Number of checks allowed per month \n";
+	cout << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee & Number of checks allowed per month \n";
 
 
 	for (int i = 0; i < checkingSize; i++)
@@ -569,7 +569,7 @@ void displayReport(SavingsAccount savingAccounts[], CheckingAccount checkingAcco
 	//write checking accounts with interest to the file
 
 	cout << "Checking Accounts with Interest: ";
-	cout << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee and Number of checks allowed per month \n";
+	cout << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee & Number of checks allowed per month \n";
 
 
 	for (int i = 0; i < withInterestSize; i++)
@@ -592,8 +592,8 @@ void writeAccountDetails(SavingsAccount savingAccounts[], CheckingAccount checki
 
 	//write savings accountst to the file
 
-	writeFile << "\nSavings Accounts: ";
-	writeFile << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address and Postcode \n";
+	writeFile << "Savings Accounts: ";
+	writeFile << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address and Postcode \n";
 
 
 	for (int i = 0; i < savingsize; i++)
@@ -607,7 +607,7 @@ void writeAccountDetails(SavingsAccount savingAccounts[], CheckingAccount checki
 	//write checking accounts to the file
 
 	writeFile << "Checking Accounts: ";
-	writeFile << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee and Number of checks allowed per month \n";
+	writeFile << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee & Number of checks allowed per month \n";
 
 
 	for (int i = 0; i < checkingSize; i++)
@@ -622,7 +622,7 @@ void writeAccountDetails(SavingsAccount savingAccounts[], CheckingAccount checki
 	//write checking accounts with interest to the file
 
 	writeFile << "Checking Accounts with Interest: ";
-	writeFile << "Below account Details are in the format of - Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee and Number of checks allowed per month \n";
+	writeFile << "The Account Details below are in the format of :- Account No, Account Balance, BSB No, Branch address, Postcode, Monthly fee & Number of checks allowed per month \n";
 
 
 	for (int i = 0; i < withInterestSize; i++)

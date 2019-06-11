@@ -73,12 +73,12 @@ BankAccount::~BankAccount()
 
 void BankAccount::display()
 {
-	std::cout << "Account No: " << accountNumber << std::endl;
-	std::cout << "Balance: " << accountBalance << std::endl;
-	std::cout << "Interest Rate: " << interestRate << std::endl;
-	std::cout << "BSB: " << homeBranch.getBsb() << std::endl;
-	std::cout << "Branch address: " << homeBranch.getAddress() << std::endl;
-	std::cout << "Post Code: " << homeBranch.getPostCode() << std::endl;
+	std::cout << "\nAccount No: " << accountNumber << std::endl;
+	std::cout << "Balance : $" << accountBalance << std::endl;
+	std::cout << "Interest Rate : " << interestRate << std::endl;
+	std::cout << "BSB : " << homeBranch.getBsb() << std::endl;
+	std::cout << "Branch address : " << homeBranch.getAddress() << std::endl;
+	std::cout << "Post Code : " << homeBranch.getPostCode() << std::endl;
 }
 /*
 int BankAccount::getInt(std::string message)

@@ -25,11 +25,11 @@ Transaction::Transaction(BankAccount withdrawAccount, BankAccount depositAccount
 
 	if ((amount > 100000) || (amount < 0))
 	{
-		std::cout << "Invalid amount ." << std::endl;
+		std::cout << "Invalid Amount ." << std::endl;
 		return;
 	}
 
-	//withdraw the amount from the 1st accont 
+	//withdraw the amount from the 1st account 
 	if ((withdrawAccount.getBalance() - Transaction::amount) >= 0)
 	{
 		withdrawAccount.setAccountBalance(withdrawAccount.getBalance() - Transaction::amount);
