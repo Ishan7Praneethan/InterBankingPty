@@ -24,7 +24,7 @@ int main()
 		//ask if user wish to add anumore accounts
 		if (i < 10)
 		{
-			cout << "Would you like to add another account ? (y - Yes | any other character - No) : ";
+			cout << "\nWould you like to add another account? (Yes = 'y' | No = 'Any other character'): ";
 			cin >> userChoice;
 		}
 
@@ -34,12 +34,15 @@ int main()
 	cout << endl;
 
 	//disaplay the information about each bank account
-
+	cout << "Account Details" << endl;
+	cout << "---------------" << endl;
 	for (int j = 0; j < i; j++)
 	{
 		BankAccount account;
 		account = accounts[j];
+
 		account.displayAccount();
+
 	}
 
 	//declare variable to hold the number of years the account will be active
@@ -50,7 +53,7 @@ int main()
 	{
 		do
 		{
-			cout << "Please enter the number of years the account No: " << accounts[g].getAccountNumber() << " will be active: ";
+			cout << "Enter the total Number of years Account No:" << accounts[g].getAccountNumber() << " will be active for: ";
 			cin >> years;
 		} while ((years > 40) || (years < 0));
 		//displayb user the each year ending balance 
@@ -71,13 +74,13 @@ int main()
 	BankAccount depositAccount;
 
 
-	cout << "Please Enter the Withdrawal account number: ";
+	cout << "\nEnter the Withdrawal Account number: ";
 	cin >> wacoount;
 
-	cout << "Please Enter the deposit account Number: ";
+	cout << "Enter the deposit Account Number: ";
 	cin >> daccount;
 
-	cout << "Please enter the amount to be deposited to " << daccount << " : ";
+	cout << "Enter the amount to be deposited to Account no: " << daccount << " : $";
 	cin >> ammount;
 
 	for (int accountIndex = 0; accountIndex < i; accountIndex++)
