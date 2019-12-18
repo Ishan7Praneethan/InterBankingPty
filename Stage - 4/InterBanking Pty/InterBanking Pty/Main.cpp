@@ -68,6 +68,7 @@ int main()
 	//display the details of each account
 	for (int i = 0; i < numOfObj; i++)
 	{
+		cout << "Account " + to_string(i + 1) + " : " << endl;
 		displayAccount(userAccount[i]);
 		computeInterest(userAccount[i]);
 	}
@@ -115,6 +116,7 @@ int main()
 	cout << "\nUpdated Account details\n" << endl;
 	for (int i = 0; i < numOfObj; i++)
 	{
+		cout << "Account " + to_string(i+1) + " : " << endl;
 		displayAccount(userAccount[i]);
 	}
 
