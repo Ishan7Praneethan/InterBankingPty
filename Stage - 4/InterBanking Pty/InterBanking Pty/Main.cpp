@@ -81,9 +81,9 @@ int main()
 
 
 	//prompt user to get transfer amount
-	cout << "\n\nEnter the Account Number to Transfer Money From : ";
+	cout << "\n\nEnter the Account to Transfer Money From : ";
 	cin >> accNum1;
-	cout << "Enter the Account Number to Transfer Money To : ";
+	cout << "Enter the Account to Transfer Money To : ";
 	cin >> accNum2;
 	cout << "Enter the Amount to be transfered from " + to_string(userAccount[accNum1 - 1].accountNumber) + " : ";
 	cin >> transferAmount;
